@@ -1,65 +1,97 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
 using SmartAppointments.Api.Data;
 using SmartAppointments.Api.Models;
-using SmartAppointments.Api.Dtos;
-using SmartAppointments.Api.Services;
 
 namespace SmartAppointments.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProvidersController : ControllerBase
+    public class ProviderController : ControllerBase
     {
         private readonly AppDbContext _db;
-
-        public ProvidersController(AppDbContext db)
+        public ProviderController(AppDbContext db)
         {
             _db = db;
         }
 
+        // ============================
+        // 1. Get all providers
+        // ============================
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [AllowAnonymous]
+        public async Task<IActionResult> GetAllProviders()
         {
-            var providers = await _db.Providers
-                                     .Include(p => p.User) // Include related User
-                                     .ToListAsync();
+            var providers = await _db.Providers.ToListAsync();
             return Ok(providers);
         }
 
+        // ============================
+        // 2. Get provider by ID
+        // ============================
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        [AllowAnonymous]
+        public async Task<IActionResult> GetProvider(int id)
         {
-            var provider = await _db.Providers
-                                    .Include(p => p.User)
-                                    .SingleOrDefaultAsync(p => p.Id == id);
-
+            var provider = await _db.Providers.FindAsync(id);
             if (provider == null)
                 return NotFound(new { message = "Provider not found" });
 
             return Ok(provider);
         }
 
-       [HttpPost]
-[Authorize(Roles = "Provider,Admin")]
-public async Task<IActionResult> Create([FromBody] Provider provider)
-{
-    if (provider == null)
-        return BadRequest(new { message = "Invalid provider data" });
+        // ============================
+        // 3. Add provider (Admin only)
+        // ============================
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AddProvider([FromBody] Provider provider)
+        {
+            if (provider == null)
+                return BadRequest(new { message = "Invalid data" });
 
-    // Get the logged-in user's ID from JWT claims
-    var userIdClaim = User.FindFirst("id"); // "id" is what your token service sets
-    if (userIdClaim == null)
-        return Unauthorized();
+            _db.Providers.Add(provider);
+            await _db.SaveChangesAsync();
 
-    provider.UserId = int.Parse(userIdClaim.Value); // automatically assign the user ID
+            return Ok(new { message = "Provider added successfully", provider });
+        }
 
-    _db.Providers.Add(provider);
-    await _db.SaveChangesAsync();
+        // ============================
+        // 4. Update provider (Admin only)
+        // ============================
+        [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdateProvider(int id, [FromBody] Provider updated)
+        {
+            var provider = await _db.Providers.FindAsync(id);
+            if (provider == null)
+                return NotFound(new { message = "Provider not found" });
 
-    return CreatedAtAction(nameof(Get), new { id = provider.Id }, provider);
-}
+            provider.Name = updated.Name;
+            provider.Specialty = updated.Specialty;
+            provider.ContactInfo = updated.ContactInfo;
+            provider.Description = updated.Description;
 
+            await _db.SaveChangesAsync();
+            return Ok(new { message = "Provider updated", provider });
+        }
+
+        // ============================
+        // 5. Delete provider (Admin only)
+        // ============================
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteProvider(int id)
+        {
+            var provider = await _db.Providers.FindAsync(id);
+            if (provider == null)
+                return NotFound(new { message = "Provider not found" });
+
+            _db.Providers.Remove(provider);
+            await _db.SaveChangesAsync();
+
+            return Ok(new { message = "Provider deleted successfully" });
+        }
     }
 }
