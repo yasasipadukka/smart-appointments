@@ -1,0 +1,26 @@
+<div class="dashboard">
+  <h1>Welcome to Dashboard</h1>
+  <p>This is your app’s main page.</p>
+  <a routerLink="/login" class="logout">Logout</a>
+</div>
+<div class="dashboard-container">
+  <nav class="navbar">
+    <h1>Smart Appointments Dashboard</h1>
+    <button (click)="logout()">Logout</button>
+  </nav>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Total Appointments</h3>
+      <p>120</p>
+    </div>
+    <div class="card">
+      <h3>Pending Appointments</h3>
+      <p>15</p>
+    </div>
+    <div class="card">
+      <h3>Completed Appointments</h3>
+      <p>105</p>
+    </div>
+  </div>
+</div>
