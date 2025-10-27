@@ -1,21 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '../models/user.model';
+
+interface RegisterRequest {
+  name: string;
+  email: string;
+  password: string;
+}
+
+interface LoginRequest {
+  email: string;
+  password: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:5091/api/auth'; // Backend API
+  private apiUrl = 'http://localhost:5091/api'; // Your .NET API URL
 
   constructor(private http: HttpClient) {}
 
-  register(user: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/register`, user);
+  register(data: RegisterRequest): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/register`, data);
   }
 
-  login(credentials: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, credentials);
+  login(data: LoginRequest): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/login`, data);
   }
 }
