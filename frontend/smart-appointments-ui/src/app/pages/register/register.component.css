@@ -1,61 +1,42 @@
-.auth-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #f4f7f8;
-}
-
-.auth-box {
-  background: #fff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+.register-container {
   width: 350px;
+  margin: 60px auto;
+  background: #fff;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   text-align: center;
 }
 
-h2 {
+.register-container h2 {
   margin-bottom: 20px;
   color: #333;
+  font-weight: 600;
 }
 
-input {
+.register-container input {
   width: 100%;
-  padding: 12px 15px;
+  padding: 10px;
   margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
 }
 
-button {
+.register-container button {
   width: 100%;
-  padding: 12px;
-  margin-top: 15px;
-  background-color: #5c6bc0;
-  color: white;
+  padding: 10px;
+  background-color: #0078d7;
   border: none;
-  border-radius: 8px;
+  color: #fff;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
-  transition: background 0.3s;
+  font-weight: 500;
+  margin-top: 10px;
+  transition: 0.3s;
 }
 
-button:hover {
-  background-color: #3f51b5;
-}
-
-p {
-  margin-top: 15px;
-  font-size: 14px;
-}
-
-a {
-  color: #5c6bc0;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
+.register-container button:hover {
+  background-color: #005fa3;
 }
