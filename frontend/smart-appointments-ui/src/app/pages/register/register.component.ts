@@ -11,26 +11,33 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  name = '';
+  firstName = '';
+  lastName = '';
   email = '';
   password = '';
 
   constructor(private auth: AuthService, private router: Router) {}
 
   register() {
-    if (this.name && this.email && this.password) {
-      this.auth
-        .register({ name: this.name, email: this.email, password: this.password })
-        .subscribe({
-          next: (res) => {
-            alert('Registered successfully!');
-            this.router.navigate(['/login']);
-          },
-          error: (err) => {
-            console.error(err);
-            alert('Registration failed.');
-          },
-        });
+    if (this.firstName && this.lastName && this.email && this.password) {
+      const userData = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        password: this.password,
+        role: 'Client', // optional but matches backend default
+      };
+
+      this.auth.register(userData).subscribe({
+        next: (res) => {
+          alert('✅ Registered successfully!');
+          this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          console.error('❌ Registration failed:', err);
+          alert('Registration failed. Please check console.');
+        },
+      });
     } else {
       alert('Please fill all fields');
     }

@@ -1,18 +1,10 @@
-<div class="auth-container">
-  <div class="auth-box">
-    <h2>Register</h2>
-    <form (ngSubmit)="register()">
-      <input type="text" placeholder="Full Name" [(ngModel)]="name" name="name" required />
-      <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required />
-      <input
-        type="password"
-        placeholder="Password"
-        [(ngModel)]="password"
-        name="password"
-        required
-      />
-      <button type="submit">Register</button>
-    </form>
-    <p>Already have an account? <a routerLink="/login">Login here</a></p>
-  </div>
+<div class="register-container">
+  <h2>Create an Account</h2>
+  <form (ngSubmit)="register()">
+    <input type="text" placeholder="First Name" [(ngModel)]="firstName" name="firstName" required />
+    <input type="text" placeholder="Last Name" [(ngModel)]="lastName" name="lastName" required />
+    <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required />
+    <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required />
+    <button type="submit">Register</button>
+  </form>
 </div>
