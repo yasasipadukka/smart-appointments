@@ -1,0 +1,8 @@
+<app-navbar></app-navbar>
+<div class="availability">
+  <h2>Doctor Availability</h2>
+  <div class="slot" *ngFor="let slot of availableSlots">
+    <strong>{{ slot.doctor }}</strong>
+    <p>{{ slot.time }}</p>
+  </div>
+</div>

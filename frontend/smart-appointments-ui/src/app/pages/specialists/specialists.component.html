@@ -1,0 +1,8 @@
+<app-navbar></app-navbar>
+<div class="specialists">
+  <h2>Our Specialists</h2>
+  <div class="card" *ngFor="let sp of specialists">
+    <h3>{{ sp.name }}</h3>
+    <p>{{ sp.field }}</p>
+  </div>
+</div>

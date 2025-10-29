@@ -1,26 +1,26 @@
+<app-navbar></app-navbar>
 <div class="dashboard">
-  <h1>Welcome to Dashboard</h1>
-  <p>This is your app’s main page.</p>
-  <a routerLink="/login" class="logout">Logout</a>
-</div>
-<div class="dashboard-container">
-  <nav class="navbar">
-    <h1>Smart Appointments Dashboard</h1>
-    <button (click)="logout()">Logout</button>
-  </nav>
+  <h2>Welcome, {{ user.name }}</h2>
+  <p>Email: {{ user.email }}</p>
 
-  <div class="cards">
-    <div class="card">
-      <h3>Total Appointments</h3>
-      <p>120</p>
+  <div class="stats">
+    <div class="stat-box">
+      <h3>Upcoming</h3>
+      <p>2</p>
     </div>
-    <div class="card">
-      <h3>Pending Appointments</h3>
-      <p>15</p>
+    <div class="stat-box">
+      <h3>Completed</h3>
+      <p>5</p>
     </div>
-    <div class="card">
-      <h3>Completed Appointments</h3>
-      <p>105</p>
+    <div class="stat-box">
+      <h3>Cancelled</h3>
+      <p>1</p>
     </div>
+  </div>
+
+  <div class="actions">
+    <button routerLink="/appointments">View Appointments</button>
+    <button routerLink="/availability">Doctor Availability</button>
+    <button routerLink="/specialists">View Specialists</button>
   </div>
 </div>
