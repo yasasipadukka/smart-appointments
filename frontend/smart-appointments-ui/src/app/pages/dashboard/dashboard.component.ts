@@ -1,19 +1,17 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterModule],
+  imports: [CommonModule, NavbarComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  constructor(private router: Router) {}
-
-  logout() {
-    alert('Logged out!');
-    this.router.navigate(['/login']);
-  }
+  user = {
+    name: 'John Doe',
+    email: 'john@example.com',
+  };
 }

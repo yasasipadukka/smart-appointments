@@ -1,0 +1,72 @@
+.appointments {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2,
+h3 {
+  text-align: center;
+  color: #004aad;
+}
+
+.appointment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  background: #004aad;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  align-self: flex-start;
+}
+
+button:hover {
+  background: #006eff;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+li {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li strong {
+  color: #004aad;
+}
