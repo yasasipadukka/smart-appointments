@@ -6,6 +6,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AppointmentsComponent } from './pages/appointments/appointments.component';
 import { AvailabilityComponent } from './pages/availability/availability.component';
 import { SpecialistsComponent } from './pages/specialists/specialists.component';
+import { DoctorComponent } from './pages/doctor/doctor.component';
 
 export const routes: Routes = [
   { path: '', component: HeroComponent },
@@ -15,4 +16,5 @@ export const routes: Routes = [
   { path: 'appointments', component: AppointmentsComponent },
   { path: 'availability', component: AvailabilityComponent },
   { path: 'specialists', component: SpecialistsComponent },
+  { path: 'doctors', component: DoctorComponent },
 ];
