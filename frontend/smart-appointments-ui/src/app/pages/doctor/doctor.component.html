@@ -1,0 +1,16 @@
+<app-navbar></app-navbar>
+
+<div class="directory-container">
+  <h2>Doctor Directory</h2>
+  <input type="text" placeholder="Search by name or specialty..." [(ngModel)]="searchText" />
+
+  <div class="doctor-grid">
+    <div *ngFor="let doc of filteredDoctors" class="doctor-card">
+      <img [src]="doc.image" alt="{{ doc.name }}" />
+      <h3>{{ doc.name }}</h3>
+      <p>{{ doc.specialty }}</p>
+      <span>{{ doc.location }}</span>
+      <button>Book Appointment</button>
+    </div>
+  </div>
+</div>

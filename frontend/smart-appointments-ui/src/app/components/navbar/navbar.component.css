@@ -1,12 +1,23 @@
 .navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: #004aad;
-  color: white;
-  padding: 15px 40px;
+  justify-content: space-between;
+  padding: 12px 40px;
+  background-color: #1e5491;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
+.logo-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #f2f2f3;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
 .nav-links {
   list-style: none;
   display: flex;
@@ -34,4 +45,17 @@
 .signup {
   background: white;
   color: #004aad;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }

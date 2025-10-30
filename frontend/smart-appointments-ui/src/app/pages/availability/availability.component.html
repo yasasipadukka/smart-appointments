@@ -1,8 +1,48 @@
 <app-navbar></app-navbar>
-<div class="availability">
-  <h2>Doctor Availability</h2>
-  <div class="slot" *ngFor="let slot of availableSlots">
-    <strong>{{ slot.doctor }}</strong>
-    <p>{{ slot.time }}</p>
+
+<div class="availability-container">
+  <h2>Doctor Availability Management</h2>
+
+  <div class="add-slot">
+    <h3>Add New Time Slot</h3>
+    <form (ngSubmit)="addAvailability()">
+      <input type="date" [(ngModel)]="newSlot.date" name="date" required />
+      <input type="time" [(ngModel)]="newSlot.startTime" name="startTime" required />
+      <input type="time" [(ngModel)]="newSlot.endTime" name="endTime" required />
+      <button type="submit">Add Slot</button>
+    </form>
+  </div>
+
+  <div class="slots-list">
+    <h3>Available Slots</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let slot of availabilities">
+          <td>{{ slot.date }}</td>
+          <td>{{ slot.startTime }}</td>
+          <td>{{ slot.endTime }}</td>
+          <td>
+            <span [class.available]="slot.isAvailable" [class.unavailable]="!slot.isAvailable">
+              {{ slot.isAvailable ? 'Available' : 'Booked' }}
+            </span>
+          </td>
+          <td>
+            <button (click)="toggleAvailability(slot)">
+              {{ slot.isAvailable ? 'Mark as Booked' : 'Mark Available' }}
+            </button>
+            <button class="delete" (click)="deleteAvailability(slot.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
